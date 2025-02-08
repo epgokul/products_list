@@ -26,12 +26,14 @@ class ProductData {
   final String status;
   final List<Product> products;
   final Pagination pagination;
+  final List<Category> categories;
 
   ProductData({
     required this.title,
     required this.status,
     required this.products,
     required this.pagination,
+    required this.categories,
   });
 
   factory ProductData.fromMap(Map<String, dynamic> json) => ProductData(
@@ -40,6 +42,31 @@ class ProductData {
         products:
             List<Product>.from(json["products"].map((x) => Product.fromMap(x))),
         pagination: Pagination.fromMap(json["pagination"]),
+        categories: json["categories"] != null
+            ? List<Category>.from(
+                json["categories"].map((x) => Category.fromMap(x)))
+            : [], // Handle if null
+      );
+}
+
+class Category {
+  final String id;
+  final String title;
+  final String image;
+  final bool isSelected;
+
+  Category({
+    required this.id,
+    required this.title,
+    required this.image,
+    required this.isSelected,
+  });
+
+  factory Category.fromMap(Map<String, dynamic> json) => Category(
+        id: json["_id"] ?? "",
+        title: json["title"] ?? "",
+        image: json["image"] ?? "",
+        isSelected: json["isSelected"] ?? false,
       );
 }
 

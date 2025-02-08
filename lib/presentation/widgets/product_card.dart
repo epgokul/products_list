@@ -27,7 +27,7 @@ class ProductCard extends StatelessWidget {
                   child: Image.network(
                     prod.images[0].url,
                     width: MediaQuery.sizeOf(context).width,
-                    height: 150,
+                    height: 100,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -62,7 +62,8 @@ class ProductCard extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Row(
+          FittedBox(
+              child: Row(
             children: [
               Text(
                 '₹$originalprice',
@@ -78,7 +79,7 @@ class ProductCard extends StatelessWidget {
                 style: const TextStyle(decoration: TextDecoration.lineThrough),
               ),
             ],
-          )
+          ))
         ],
       ),
     );
